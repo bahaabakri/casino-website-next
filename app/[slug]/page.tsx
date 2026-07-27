@@ -55,8 +55,6 @@ export default async function CmsPageRoute({ params }: CmsPageProps) {
   
   return (
     <div>
-      <h1>{page.title}</h1>
-      {page.description ? <p>{page.description}</p> : null}
       <PageSections sections={sections} site={siteConfig} />
     </div>
   );

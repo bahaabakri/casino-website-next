@@ -4,6 +4,8 @@ import type {
 } from "@/server/page-section/page-section.type";
 import { getPageSectionById } from "@/server/page-section/page-section";
 import type { SiteConfig } from "@/server/site/site.type";
+import { ContactUsFormSection } from "./contact-us-form-section";
+import { ContactUsInfoSection } from "./contact-us-info-section";
 import { HeroSection } from "./hero-section";
 
 type SectionComponent = ({
@@ -15,6 +17,8 @@ type SectionComponent = ({
 }) => React.ReactNode;
 
 const sectionRegistry: Record<string, SectionComponent> = {
+  "contact-us-form": ContactUsFormSection,
+  "contact-us-info": ContactUsInfoSection,
   hero: HeroSection,
 };
 
