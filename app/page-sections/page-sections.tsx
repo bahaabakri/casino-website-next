@@ -7,6 +7,7 @@ import type { SiteConfig } from "@/server/site/site.type";
 import { ContactUsFormSection } from "./contact-us-form-section";
 import { ContactUsInfoSection } from "./contact-us-info-section";
 import { HeroSection } from "./hero-section";
+import { ImageGallerySection } from "./image-gallery-section";
 
 type SectionComponent = ({
   content,
@@ -20,6 +21,7 @@ const sectionRegistry: Record<string, SectionComponent> = {
   "contact-us-form": ContactUsFormSection,
   "contact-us-info": ContactUsInfoSection,
   hero: HeroSection,
+  "images-gallery": ImageGallerySection,
 };
 
 function sortSections(first: PageSection, second: PageSection): number {
