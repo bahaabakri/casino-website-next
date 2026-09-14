@@ -54,7 +54,6 @@ export async function getPageSections(pageId: number): Promise<PageSection[]> {
   }
 
   const sections: unknown = await response.json();
-
   if (!isRecord(sections)) {
     throw new Error("CMS returned an invalid page sections list");
   }
@@ -76,13 +75,17 @@ export async function getPageSectionById(id: number): Promise<PageSection> {
   }
 
   const apiUrl = getCmsApiUrl();
-  const response = await fetch(`${apiUrl}/page-sections/${encodeURIComponent(id)}`, {
-    next: {
-      revalidate: 300,
-      tags: [`page-section-${id}`],
-    },
-  });
-
+  const response = await fetch(
+    `${apiUrl}/page-sections/${encodeURIComponent(id)}`,
+    process.env.NODE_ENV === "development"
+      ? { cache: "no-store" }
+      : {
+          next: {
+            revalidate: 300,
+            tags: [`page-section-${id}`],
+          },
+        },
+  );
   if (!response.ok) {
     throw new Error(
       `Failed to fetch page section (${response.status} ${response.statusText})`,
